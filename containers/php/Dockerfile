@@ -9,6 +9,11 @@ ARG HOST_GROUP_NAME
 ARG SMTP_HOST
 ARG SMTP_PORT
 
+ARG OXID_SATIS_USER
+ENV OXID_SATIS_USER=${OXID_SATIS_USER}
+ARG OXID_SATIS_PWD
+ENV OXID_SATIS_PWD=${OXID_SATIS_PWD}
+
 COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 COPY custom.ini /usr/local/etc/php/conf.d/zcustom.ini
 
@@ -22,5 +27,9 @@ RUN groupadd -f -g $HOST_GROUP_ID $HOST_GROUP_NAME && \
 
 RUN mkdir /home/$HOST_USER_NAME/.ssh && \
     ssh-keyscan -t rsa github.com >> /home/$HOST_USER_NAME/.ssh/known_hosts
+
+COPY composer_auth.sh /usr/local/src/composer_auth.sh
+RUN chmod +x /usr/local/src/composer_auth.sh
+RUN /usr/local/src/composer_auth.sh
 
 WORKDIR /var/www/

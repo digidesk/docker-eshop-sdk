@@ -32,8 +32,9 @@ Additionally, check services directory:
 
 ## Quick start
 
+## Example website
 ```
-git clone https://github.com/OXID-eSales/docker-eshop-sdk.git myProjectName
+git clone https://github.com/digidesk/docker-eshop-sdk.git myProjectName
 cd myProjectName
 
 # get some information about whats possible
@@ -45,6 +46,27 @@ make setup
 # run example script which prepares several example files for you to see this environment functionality
 make example
 ```
+
+## OXID eShop
+1. Clone the SDK to ``MyProject`` directory in this case:
+```
+git clone https://github.com/digidesk/docker-eshop-sdk.git myProjectName
+cd myProjectName
+```
+
+2. Clone recipes
+```
+git clone https://github.com/OXID-eSales/docker-eshop-sdk-recipes recipes/oxid-esales
+```
+3. And last - run the desired recipe
+  * OXID EE 7.0 - replace `<USERNAME>` and `<PASSWORD>` with your OXID SATIS credentials
+    ```
+    OXID_SATIS_USER=<USERNAME> OXID_SATIS_PWD=<PASSWORD> ./recipes/digidesk/b-7.0.x-compilation.sh -e ee
+    ```
+  * OXID EE 7.1 - replace `<USERNAME>` and `<PASSWORD>` with your OXID SATIS credentials
+    ```
+    OXID_SATIS_USER=<USERNAME> OXID_SATIS_PWD=<PASSWORD> ./recipes/digidesk/b-7.1.x-compilation.sh -e ee
+    ```
 
 Access the website through the http://localhost.local
 * phpinfo shown on index page
@@ -58,12 +80,17 @@ Adminer is available via http://localhost.local:8080
 
 Mailpit is available via http://localhost.local:8025/
 
+If you have trouble to set up and you want to start again with a clean state then do the following:
+```
+make cleanup
+```
+
 ## Longer start
 
 This example shows more precise configuration which can be used for your project. It is real usage flow:
 
 ```
-git clone https://github.com/OXID-eSales/docker-eshop-sdk.git myProjectName
+git clone https://github.com/digidesk/docker-eshop-sdk.git myProjectName
 cd myProjectName
 
 # setup rights and basic configuration files

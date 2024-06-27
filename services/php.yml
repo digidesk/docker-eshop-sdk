@@ -8,6 +8,8 @@
         HOST_GROUP_ID: ${HOST_GROUP_ID}
         HOST_USER_NAME: ${HOST_USER_NAME}
         HOST_GROUP_NAME: ${HOST_GROUP_NAME}
+        OXID_SATIS_USER: ${OXID_SATIS_USER}
+        OXID_SATIS_PWD: ${OXID_SATIS_PWD}
     links:
       - "apache:localhost.local"
       - "apache:oxideshop.local"
