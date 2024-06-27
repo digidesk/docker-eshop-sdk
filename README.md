@@ -67,6 +67,14 @@ git clone https://github.com/OXID-eSales/docker-eshop-sdk-recipes recipes/oxid-e
     ```
     OXID_SATIS_USER=<USERNAME> OXID_SATIS_PWD=<PASSWORD> ./recipes/digidesk/b-7.1.x-compilation.sh -e ee
     ```
+4. (optional) If you want to use Smarty instead of Twig
+   ```
+   # connect to php container
+   make php
+   
+   # run following script
+   ~/replace_twig_with_smarty.sh
+   ```
 
 Access the website through the http://localhost.local
 * phpinfo shown on index page

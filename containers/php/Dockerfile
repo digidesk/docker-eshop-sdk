@@ -2,6 +2,14 @@ ARG PHP_VERSION
 
 FROM oxidesales/oxideshop-docker-php:$PHP_VERSION
 
+# install dependencies and cleanup (needs to be one step, as else it will cache in the layer)
+RUN apt-get update -y \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        jq \
+    && apt-get clean \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
 ARG HOST_USER_ID
 ARG HOST_USER_NAME
 ARG HOST_GROUP_ID
@@ -28,8 +36,11 @@ RUN groupadd -f -g $HOST_GROUP_ID $HOST_GROUP_NAME && \
 RUN mkdir /home/$HOST_USER_NAME/.ssh && \
     ssh-keyscan -t rsa github.com >> /home/$HOST_USER_NAME/.ssh/known_hosts
 
-COPY composer_auth.sh /usr/local/src/composer_auth.sh
-RUN chmod +x /usr/local/src/composer_auth.sh
-RUN /usr/local/src/composer_auth.sh
+COPY composer_auth.sh /home/$HOST_USER_NAME/composer_auth.sh
+RUN chmod +x /home/$HOST_USER_NAME/composer_auth.sh
+RUN /home/$HOST_USER_NAME/composer_auth.sh
+
+COPY replace_twig_with_smarty.sh /home/$HOST_USER_NAME/replace_twig_with_smarty.sh
+RUN chmod +x /home/$HOST_USER_NAME/replace_twig_with_smarty.sh
 
 WORKDIR /var/www/
