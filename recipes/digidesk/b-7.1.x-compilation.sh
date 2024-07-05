@@ -31,26 +31,25 @@ perl -pi\
   containers/httpd/project.conf
 
 # Setup PHP with Shop files
-mkdir source
-docker compose up --build -d php
-docker compose exec -T php /usr/local/src/composer_auth.sh
-docker compose exec -T php composer create-project --no-dev oxid-esales/oxideshop-project . dev-b-7.1-${edition}
-make down
+mkdir source && \
+docker compose up --build -d php && \
+docker compose exec -T php composer create-project --no-dev oxid-esales/oxideshop-project . dev-b-7.1-${edition} && \
+make down && \
 
 # Start all containers
-make up
+make up && \
 
 perl -pi\
   -e 'print "SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=\$1\n\n" if $. == 1'\
-  source/source/.htaccess
+  source/source/.htaccess && \
 
-docker compose exec -T php composer require oxid-esales/developer-tools:dev-b-7.0.x --no-update
-docker compose exec -T php composer update
+docker compose exec -T php composer require oxid-esales/developer-tools:dev-b-7.0.x --no-update && \
+docker compose exec -T php composer update && \
 
 # Setup the database
-"${SCRIPT_PATH}/../oxid-esales/parts/shared/setup_database.sh"
+"${SCRIPT_PATH}/../oxid-esales/parts/shared/setup_database.sh" && \
 
-docker compose exec -T php vendor/bin/oe-console oe:theme:activate apex
-"${SCRIPT_PATH}/../oxid-esales/parts/shared/create_admin.sh"
+docker compose exec -T php vendor/bin/oe-console oe:theme:activate apex && \
+"${SCRIPT_PATH}/../oxid-esales/parts/shared/create_admin.sh" && \
 
 echo "Done!"
