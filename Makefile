@@ -25,7 +25,9 @@ setup:
 		sed "s/<userId>/$(USERID)/;\
 		     s/<userName>/$(USERNAME)/;\
 		     s/<groupId>/$(GROUPID)/;\
-		     s/<groupName>/$(GROUPNAME)/"\
+		     s/<groupName>/$(GROUPNAME)/;\
+		     s/<oxSatisUser>/$(OXID_SATIS_USER)/;\
+		     s/<oxSatisPwd>/$(OXID_SATIS_PWD)/"\
 		> .env
 	@cp -n containers/httpd/project.conf.dist containers/httpd/project.conf
 	@cp -n containers/php/custom.ini.dist containers/php/custom.ini
