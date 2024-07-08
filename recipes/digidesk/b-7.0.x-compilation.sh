@@ -33,6 +33,7 @@ perl -pi\
 # Setup PHP with Shop files
 mkdir source && \
 docker compose up --build -d php && \
+docker compose exec -T php /bin/bash -c "~/composer_auth.sh" && \
 docker compose exec -T php composer create-project --no-dev oxid-esales/oxideshop-project . dev-b-7.0-${edition} && \
 make down && \
 

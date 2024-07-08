@@ -38,7 +38,6 @@ RUN mkdir /home/$HOST_USER_NAME/.ssh && \
 
 COPY composer_auth.sh /home/$HOST_USER_NAME/composer_auth.sh
 RUN chmod +x /home/$HOST_USER_NAME/composer_auth.sh
-RUN /home/$HOST_USER_NAME/composer_auth.sh
 
 COPY replace_twig_with_smarty.sh /home/$HOST_USER_NAME/replace_twig_with_smarty.sh
 RUN chmod +x /home/$HOST_USER_NAME/replace_twig_with_smarty.sh
