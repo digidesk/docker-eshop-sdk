@@ -29,6 +29,10 @@ setup:
 		     s/<oxSatisUser>/$(OXID_SATIS_USER)/;\
 		     s/<oxSatisPwd>/$(OXID_SATIS_PWD)/"\
 		> .env
+	@if [ -n "$$PHP_VERSION" ]; then \
+		echo "PHP_VERSION is set to: $$PHP_VERSION"; \
+		sed -i.bak "s/PHP_VERSION=8.1/PHP_VERSION=$${PHP_VERSION}/g" .env && rm .env.bak; \
+	fi
 	@cp -n containers/httpd/project.conf.dist containers/httpd/project.conf
 	@cp -n containers/php/custom.ini.dist containers/php/custom.ini
 	@cp -n docker-compose.yml.dist docker-compose.yml
