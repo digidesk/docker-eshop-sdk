@@ -56,7 +56,7 @@ cd myProjectName
 
 2. Clone recipes
 ```
-git clone https://github.com/OXID-eSales/docker-eshop-sdk-recipes recipes/oxid-esales
+git clone --recurse-submodules https://github.com/OXID-eSales/docker-eshop-sdk-recipes recipes/oxid-esales
 ```
 3. And last - run the desired recipe
   * OXID EE 7.0 - replace `<USERNAME>` and `<PASSWORD>` with your OXID SATIS credentials
@@ -70,6 +70,10 @@ git clone https://github.com/OXID-eSales/docker-eshop-sdk-recipes recipes/oxid-e
   * OXID EE 7.1 with PHP 8.2 - replace `<USERNAME>` and `<PASSWORD>` with your OXID SATIS credentials
     ```
     OXID_SATIS_USER=<USERNAME> OXID_SATIS_PWD=<PASSWORD> PHP_VERSION=8.2 ./recipes/digidesk/b-7.1.x-compilation.sh -e ee
+    ```
+  * OXID EE 7.2 with PHP 8.3 - replace `<USERNAME>` and `<PASSWORD>` with your OXID SATIS credentials
+    ```
+    OXID_SATIS_USER=<USERNAME> OXID_SATIS_PWD=<PASSWORD> PHP_VERSION=8.3 ./recipes/digidesk/b-7.2.x-compilation.sh -e ee
     ```
 4. (optional) If you want to use Smarty instead of Twig
    ```
