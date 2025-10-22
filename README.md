@@ -75,6 +75,10 @@ git clone --recurse-submodules https://github.com/OXID-eSales/docker-eshop-sdk-r
     ```
     OXID_SATIS_USER=<USERNAME> OXID_SATIS_PWD=<PASSWORD> PHP_VERSION=8.3 ./recipes/digidesk/b-7.2.x-compilation.sh -e ee
     ```
+  * OXID EE 7.3 with PHP 8.4 - replace `<USERNAME>` and `<PASSWORD>` with your OXID SATIS credentials
+    ```
+    OXID_SATIS_USER=<USERNAME> OXID_SATIS_PWD=<PASSWORD> PHP_VERSION=8.4 ./recipes/digidesk/b-7.3.x-compilation.sh -e ee
+    ```
 4. (optional) If you want to use Smarty instead of Twig
    ```
    # connect to php container
